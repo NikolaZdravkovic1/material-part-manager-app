@@ -2,3 +2,7 @@
     pointer-events: none;
     opacity: 0.5;
 }
+.navbar-brand img {
+    height: 40px;
+    margin-right: 15px;
+}

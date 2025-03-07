@@ -1,5 +1,10 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/">
+                <img src="https://i.pinimg.com/236x/ab/3d/e2/ab3de2f5cc08f507f728f39c66e596b8.jpg" alt="Logo" style="height: 40px; width: auto; padding-bottom: 20px;">
+            </a>
+        </div>
         <ul class="nav navbar-nav">
             <li><a routerLink="/">Menu</a></li>
             <li [class.disabled]="!(user$ | async)">
@@ -10,8 +15,12 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li *ngIf="!(user$ | async)"><a routerLink="/login" style="cursor: pointer;">Login</a></li>
-            <li *ngIf="(user$ | async)"><a (click)="logout()" style="cursor: pointer;">Logout</a></li>
+            <li *ngIf="!(user$ | async)">
+                <a routerLink="/login" style="cursor: pointer;">Login</a>
+            </li>
+            <li *ngIf="(user$ | async)">
+                <a (click)="logout()" style="cursor: pointer;">Logout</a>
+            </li>
         </ul>
     </div>
 </nav>
