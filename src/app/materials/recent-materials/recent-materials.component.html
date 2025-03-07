@@ -1,0 +1,51 @@
+<div class="container mt-5">
+  <h2>Recently Added Materials</h2>
+
+  <!-- Loading Indicator -->
+  <div *ngIf="isLoading" class="d-flex justify-content-center my-3">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Materials Table -->
+  <table class="table table-striped" *ngIf="!isLoading && materials.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Project</th>
+        <th>Part Number</th>
+        <th>BOM Level</th>
+        <th>Description</th>
+        <th>Type of Material</th>
+        <th>Material Sub Type</th>
+        <th>Color</th>
+        <th>Type ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let material of materials">
+        <td>{{ material.id }}</td>
+        <td>{{ material.project }}</td>
+        <td>{{ material.partNumber }}</td>
+        <td>{{ material.bomLevel }}</td>
+        <td>{{ material.description }}</td>
+        <td>{{ material.typeOfMaterial }}</td>
+        <td>{{ material.materialSubType }}</td>
+        <td>{{ material.color }}</td>
+        <td>{{ material.typeId }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="deleteMaterial(material.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No Materials Message -->
+  <p *ngIf="!isLoading && materials.length === 0" class="text-muted text-center mt-3">
+    No materials available.
+  </p>
+</div>

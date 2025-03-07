@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a routerLink="/">Menu</a></li>
+            <li [class.disabled]="!(user$ | async)">
+                <a routerLink="/part-manager">Part Manager</a>
+            </li>
+            <li [class.disabled]="!(user$ | async)">
+                <a routerLink="/materials">Material</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="!(user$ | async)"><a routerLink="/login" style="cursor: pointer;">Login</a></li>
+            <li *ngIf="(user$ | async)"><a (click)="logout()" style="cursor: pointer;">Logout</a></li>
+        </ul>
+    </div>
+</nav>

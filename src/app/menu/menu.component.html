@@ -1,0 +1,26 @@
+<div class="container mt-5">
+    <div class="row">
+      <!-- Card for Materials -->
+      <div class="col-md-6 mb-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Materials</h5>
+            <p class="card-text">Manage and view materials here.</p>
+            <button class="btn btn-primary" (click)="navigateToMaterials()" [disabled]="!(user$ | async)">Go to Materials</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Card for Part Manager -->
+      <div class="col-md-6 mb-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">Part Manager</h5>
+            <p class="card-text">Manage and view parts here.</p>
+            <button class="btn btn-primary" (click)="navigateToPartManager()" [disabled]="!(user$ | async)">Go to Part Manager</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

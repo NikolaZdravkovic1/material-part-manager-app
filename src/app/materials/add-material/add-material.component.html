@@ -1,0 +1,52 @@
+<div class="container mt-5">
+    <h2>Add Material</h2>
+    <form (ngSubmit)="onSubmit()" #materialForm="ngForm">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" class="form-control" [(ngModel)]="material.id" name="id" [readonly]="true">
+      </div>
+      
+      <div class="form-group">
+        <label for="project">Project</label>
+        <input type="text" id="project" class="form-control" [(ngModel)]="material.project" name="project" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="partNumber">Part Number</label>
+        <input type="text" id="partNumber" class="form-control" [(ngModel)]="material.partNumber" name="partNumber" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="bomLevel">BOM Level</label>
+        <input type="text" id="bomLevel" class="form-control" [(ngModel)]="material.bomLevel" name="bomLevel" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" class="form-control" [(ngModel)]="material.description" name="description" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="typeOfMaterial">Type of Material</label>
+        <input type="text" id="typeOfMaterial" class="form-control" [(ngModel)]="material.typeOfMaterial" name="typeOfMaterial" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="materialSubType">Material Sub Type</label>
+        <input type="text" id="materialSubType" class="form-control" [(ngModel)]="material.materialSubType" name="materialSubType" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input type="text" id="color" class="form-control" [(ngModel)]="material.color" name="color" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="typeId">Type ID</label>
+        <input type="text" id="typeId" class="form-control" [(ngModel)]="material.typeId" name="typeId" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!materialForm.form.valid">Add Material</button>
+    </form>
+  </div>
+  

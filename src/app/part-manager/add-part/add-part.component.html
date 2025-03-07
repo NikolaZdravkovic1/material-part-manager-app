@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <h2>Add a New Part</h2>
+    <form (ngSubmit)="addPart()" #partForm="ngForm">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" class="form-control" [(ngModel)]="part.id" name="id" [readonly]="true">
+      </div>  
+      <div class="form-group">
+        <label for="partNumber">Part Number</label>
+        <input type="text" id="partNumber" [(ngModel)]="part.partNumber" name="partNumber" class="form-control" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" [(ngModel)]="part.description" name="description" class="form-control" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="partColorCode">Part Color Code</label>
+        <input type="text" id="partColorCode" [(ngModel)]="part.partColorCode" name="partColorCode" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="custumerPartNumber">Customer Part Number</label>
+        <input type="text" id="custumerPartNumber" [(ngModel)]="part.custumerPartNumber" name="custumerPartNumber" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="customerColorCode">Customer Color Code</label>
+        <input type="text" id="customerColorCode" [(ngModel)]="part.customerColorCode" name="customerColorCode" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="project">Project</label>
+        <input type="text" id="project" [(ngModel)]="part.project" name="project" class="form-control" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="partGroup">Part Group</label>
+        <input type="text" id="partGroup" [(ngModel)]="part.partGroup" name="partGroup" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="partType">Part Type</label>
+        <input type="text" id="partType" [(ngModel)]="part.partType" name="partType" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="side">Side</label>
+        <input type="text" id="side" [(ngModel)]="part.side" name="side" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input type="text" id="color" [(ngModel)]="part.color" name="color" class="form-control" />
+      </div>
+  
+      <div class="form-group">
+        <label for="locationIdentifier">Location Identifier</label>
+        <input type="text" id="locationIdentifier" [(ngModel)]="part.locationIdentifier" name="locationIdentifier" class="form-control" />
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">Add Part</button>
+    </form>
+  </div>
+  
