@@ -10,11 +10,13 @@
           <form (ngSubmit)="login()">
             <div class="form-group">
               <label for="globalId">Global ID</label>
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
               <input type="text" id="globalId" [(ngModel)]="globalId" name="globalId" 
                      class="form-control input-lg" placeholder="Enter Global ID" required>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
               <input type="password" id="password" [(ngModel)]="password" name="password" 
                      class="form-control input-lg" placeholder="Enter Password" required>
             </div>
