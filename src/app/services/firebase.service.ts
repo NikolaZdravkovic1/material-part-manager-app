@@ -24,7 +24,7 @@ export class FirebaseService {
 
   addPart(part: Part) {
     return this.http.post(`${this.baseUrl}/parts.json`, part).pipe(
-      tap(() => this.partsUpdated.next()) // 🔄 Notify listeners
+      tap(() => this.partsUpdated.next()) 
     );
   }
 

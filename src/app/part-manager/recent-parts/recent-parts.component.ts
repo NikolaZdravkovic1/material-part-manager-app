@@ -17,7 +17,6 @@ export class RecentPartsComponent {
   ngOnInit() {
     this.fetchParts();
 
-    // 🔄 Automatically refresh when parts are updated
     this.updateSubscription=this.firebaseService.partsUpdated$.subscribe(() => {
       this.fetchParts();
     });

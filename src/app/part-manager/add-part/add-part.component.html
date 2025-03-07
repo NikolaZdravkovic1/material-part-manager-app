@@ -1,66 +1,123 @@
 <div class="container mt-5">
-    <h2>Add a New Part</h2>
-    <form (ngSubmit)="addPart()" #partForm="ngForm">
-      <div class="form-group">
-        <label for="id">ID</label>
-        <input type="text" id="id" class="form-control" [(ngModel)]="part.id" name="id" [readonly]="true">
-      </div>  
-      <div class="form-group">
-        <label for="partNumber">Part Number</label>
-        <input type="text" id="partNumber" [(ngModel)]="part.partNumber" name="partNumber" class="form-control" required />
+  <h2>Add a New Part</h2>
+  <form (ngSubmit)="addPart()" #partForm="ngForm">
+    
+   
+    <div class="form-group">
+      <label for="partNumber">Part Number</label>
+      <input type="text" id="partNumber" [(ngModel)]="part.partNumber" name="partNumber" class="form-control" required maxlength="16" pattern="^[a-zA-Z0-9-]+$" title="Only letters, numbers, and dashes are allowed" />
+      <div *ngIf="partForm.controls['partNumber']?.invalid && partForm.controls['partNumber']?.touched">
+        <small class="text-danger" *ngIf="partForm.controls['partNumber']?.errors?.['pattern']">Part Number can only contain letters, numbers, and dashes.</small>
+        <small class="text-danger" *ngIf="partForm.controls['partNumber']?.errors?.['maxlength']">Part Number cannot exceed 16 characters.</small>
       </div>
-      
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" id="description" [(ngModel)]="part.description" name="description" class="form-control" required />
+    </div>
+    
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" id="description" [(ngModel)]="part.description" name="description" class="form-control" required pattern="^[a-zA-Z0-9-]+$" title="Only letters, numbers, and dashes are allowed" />
+      <div *ngIf="partForm.controls['description']?.invalid && partForm.controls['description']?.touched">
+        <small class="text-danger" *ngIf="partForm.controls['description']?.errors?.['pattern']">Description can only contain letters, numbers, and dashes.</small>
       </div>
-  
-      <div class="form-group">
-        <label for="partColorCode">Part Color Code</label>
-        <input type="text" id="partColorCode" [(ngModel)]="part.partColorCode" name="partColorCode" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="partColorCode">Part Color Code</label>
+      <select id="partColorCode" [(ngModel)]="part.partColorCode" name="partColorCode" class="form-control">
+        <option value="">Select Color</option>
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Green">Green</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Black">Black</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="custumerPartNumber">Customer Part Number</label>
+      <input type="text" id="custumerPartNumber" [(ngModel)]="part.custumerPartNumber" name="custumerPartNumber" class="form-control" maxlength="16" pattern="^[a-zA-Z0-9-]+$" title="Only letters, numbers, and dashes are allowed" />
+      <div *ngIf="partForm.controls['custumerPartNumber']?.invalid && partForm.controls['custumerPartNumber']?.touched">
+        <small class="text-danger" *ngIf="partForm.controls['custumerPartNumber']?.errors?.['pattern']">Customer Part Number can only contain letters, numbers, and dashes.</small>
+        <small class="text-danger" *ngIf="partForm.controls['custumerPartNumber']?.errors?.['maxlength']">Customer Part Number cannot exceed 16 characters.</small>
       </div>
-  
-      <div class="form-group">
-        <label for="custumerPartNumber">Customer Part Number</label>
-        <input type="text" id="custumerPartNumber" [(ngModel)]="part.custumerPartNumber" name="custumerPartNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="customerColorCode">Customer Color Code</label>
+      <select id="customerColorCode" [(ngModel)]="part.customerColorCode" name="customerColorCode" class="form-control">
+        <option value="">Select Color</option>
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Green">Green</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Black">Black</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="project">Project</label>
+      <input type="text" id="project" [(ngModel)]="part.project" name="project" class="form-control" required maxlength="10" pattern="^[a-zA-Z0-9-_]+$" title="Only letters, numbers, dashes, and underscores are allowed" />
+      <div *ngIf="partForm.controls['project']?.invalid && partForm.controls['project']?.touched">
+        <small class="text-danger" *ngIf="partForm.controls['project']?.errors?.['pattern']">Project can only contain letters, numbers, dashes, and underscores.</small>
+        <small class="text-danger" *ngIf="partForm.controls['project']?.errors?.['maxlength']">Project cannot exceed 10 characters.</small>
       </div>
-  
-      <div class="form-group">
-        <label for="customerColorCode">Customer Color Code</label>
-        <input type="text" id="customerColorCode" [(ngModel)]="part.customerColorCode" name="customerColorCode" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label for="partGroup">Part Group</label>
+      <select id="partGroup" [(ngModel)]="part.partGroup" name="partGroup" class="form-control">
+        <option value="">Select Group</option>
+        <option value="Group 1">Group 1</option>
+        <option value="Group 2">Group 2</option>
+        <option value="Group 3">Group 3</option>
+        <option value="Group 4">Group 4</option>
+        <option value="Group 5">Group 5</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="partType">Part Type</label>
+      <select id="partType" [(ngModel)]="part.partType" name="partType" class="form-control">
+        <option value="">Select Type</option>
+        <option value="Type 1">Type 1</option>
+        <option value="Type 2">Type 2</option>
+        <option value="Type 3">Type 3</option>
+        <option value="Type 4">Type 4</option>
+        <option value="Type 5">Type 5</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="side">Side</label>
+      <select id="side" [(ngModel)]="part.side" name="side" class="form-control">
+        <option value="">Select Side</option>
+        <option value="Left">Left</option>
+        <option value="Right">Right</option>
+        <option value="Front">Front</option>
+        <option value="Back">Back</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="color">Color</label>
+      <select id="color" [(ngModel)]="part.color" name="color" class="form-control">
+        <option value="">Select Color</option>
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Green">Green</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Black">Black</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="locationIdentifier">Location Identifier</label>
+      <input type="text" id="locationIdentifier" [(ngModel)]="part.locationIdentifier" name="locationIdentifier" class="form-control" maxlength="10" pattern="^[a-zA-Z0-9-_]+$" title="Only letters, numbers, dashes, and underscores are allowed" />
+      <div *ngIf="partForm.controls['locationIdentifier']?.invalid && partForm.controls['locationIdentifier']?.touched">
+        <small class="text-danger" *ngIf="partForm.controls['locationIdentifier']?.errors?.['pattern']">Location Identifier can only contain letters, numbers, dashes, and underscores.</small>
+        <small class="text-danger" *ngIf="partForm.controls['locationIdentifier']?.errors?.['maxlength']">Location Identifier cannot exceed 10 characters.</small>
       </div>
-  
-      <div class="form-group">
-        <label for="project">Project</label>
-        <input type="text" id="project" [(ngModel)]="part.project" name="project" class="form-control" required />
-      </div>
-  
-      <div class="form-group">
-        <label for="partGroup">Part Group</label>
-        <input type="text" id="partGroup" [(ngModel)]="part.partGroup" name="partGroup" class="form-control" />
-      </div>
-  
-      <div class="form-group">
-        <label for="partType">Part Type</label>
-        <input type="text" id="partType" [(ngModel)]="part.partType" name="partType" class="form-control" />
-      </div>
-  
-      <div class="form-group">
-        <label for="side">Side</label>
-        <input type="text" id="side" [(ngModel)]="part.side" name="side" class="form-control" />
-      </div>
-  
-      <div class="form-group">
-        <label for="color">Color</label>
-        <input type="text" id="color" [(ngModel)]="part.color" name="color" class="form-control" />
-      </div>
-  
-      <div class="form-group">
-        <label for="locationIdentifier">Location Identifier</label>
-        <input type="text" id="locationIdentifier" [(ngModel)]="part.locationIdentifier" name="locationIdentifier" class="form-control" />
-      </div>
-  
-      <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">Add Part</button>
-    </form>
-  </div>
-  
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">Add Part</button>
+  </form>
+</div>

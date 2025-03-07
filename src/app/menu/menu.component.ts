@@ -9,10 +9,10 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-  user$: Observable<any>;  // Observable to track the user login state
+  user$: Observable<any>;  // Pracenje stanja ulogovanog user-a
 
   constructor(private router: Router, private authService: AuthService) {
-    this.user$ = this.authService.user$; // Get the user state from AuthService
+    this.user$ = this.authService.user$;
   }
 
   navigateToMaterials() {

@@ -1,52 +1,85 @@
 <div class="container mt-5">
-    <h2>Add Material</h2>
-    <form (ngSubmit)="onSubmit()" #materialForm="ngForm">
-      <div class="form-group">
-        <label for="id">ID</label>
-        <input type="text" id="id" class="form-control" [(ngModel)]="material.id" name="id" [readonly]="true">
+  <h2>Add Material</h2>
+  <form (ngSubmit)="onSubmit()" #materialForm="ngForm">
+    
+    <div class="form-group">
+      <label for="project">Project</label>
+      <select id="project" class="form-control" [(ngModel)]="material.project" name="project" required>
+        <option value="">Select Project</option>
+        <option value="Project 1">Project 1</option>
+        <option value="Project 2">Project 2</option>
+        <option value="Project 3">Project 3</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="partNumber">Part Number</label>
+      <input type="text" id="partNumber" class="form-control" [(ngModel)]="material.partNumber" name="partNumber" required maxlength="8" pattern="^[a-zA-Z0-9-]+$" title="Only letters, numbers, and dashes are allowed">
+      <div *ngIf="materialForm.controls['partNumber']?.invalid && materialForm.controls['partNumber']?.touched">
+        <small class="text-danger" *ngIf="materialForm.controls['partNumber']?.errors?.['pattern']">Part Number can only contain letters, numbers, and dashes.</small>
+        <small class="text-danger" *ngIf="materialForm.controls['partNumber']?.errors?.['maxlength']">Part Number cannot be longer than 8 characters.</small>
       </div>
-      
-      <div class="form-group">
-        <label for="project">Project</label>
-        <input type="text" id="project" class="form-control" [(ngModel)]="material.project" name="project" required>
+    </div>
+
+    <div class="form-group">
+      <label for="bomLevel">BOM Level</label>
+      <select id="bomLevel" class="form-control" [(ngModel)]="material.bomLevel" name="bomLevel" required>
+        <option value="">Select BOM Level</option>
+        <option value="Level 1">Level 1</option>
+        <option value="Level 2">Level 2</option>
+        <option value="Level 3">Level 3</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" id="description" class="form-control" [(ngModel)]="material.description" name="description" required pattern="^[a-zA-Z0-9-]+$" title="Only letters, numbers, and dashes are allowed">
+      <div *ngIf="materialForm.controls['description']?.invalid && materialForm.controls['description']?.touched">
+        <small class="text-danger" *ngIf="materialForm.controls['description']?.errors?.['pattern']">Description can only contain letters, numbers, and dashes.</small>
       </div>
-      
-      <div class="form-group">
-        <label for="partNumber">Part Number</label>
-        <input type="text" id="partNumber" class="form-control" [(ngModel)]="material.partNumber" name="partNumber" required>
+    </div>
+
+    <div class="form-group">
+      <label for="typeOfMaterial">Type of Material</label>
+      <select id="typeOfMaterial" class="form-control" [(ngModel)]="material.typeOfMaterial" name="typeOfMaterial" required>
+        <option value="">Select Type of Material</option>
+        <option value="Material 1">Material 1</option>
+        <option value="Material 2">Material 2</option>
+        <option value="Material 3">Material 3</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="materialSubType">Material Sub Type</label>
+      <select id="materialSubType" class="form-control" [(ngModel)]="material.materialSubType" name="materialSubType" required>
+        <option value="">Select Material Sub Type</option>
+        <option value="SubType 1">SubType 1</option>
+        <option value="SubType 2">SubType 2</option>
+        <option value="SubType 3">SubType 3</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="color">Color</label>
+      <select id="color" class="form-control" [(ngModel)]="material.color" name="color" required>
+        <option value="">Select Color</option>
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Green">Green</option>
+        <option value="Yellow">Yellow</option>
+        <option value="Black">Black</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="typeId">Type ID</label>
+      <input type="text" id="typeId" class="form-control" [(ngModel)]="material.typeId" name="typeId" required maxlength="4" pattern="^[a-zA-Z0-9-]+$" title="Only letters, numbers, and dashes are allowed">
+      <div *ngIf="materialForm.controls['typeId']?.invalid && materialForm.controls['typeId']?.touched">
+        <small class="text-danger" *ngIf="materialForm.controls['typeId']?.errors?.['pattern']">Type ID can only contain letters, numbers, and dashes.</small>
+        <small class="text-danger" *ngIf="materialForm.controls['typeId']?.errors?.['maxlength']">Type ID cannot be longer than 4 characters.</small>
       </div>
-  
-      <div class="form-group">
-        <label for="bomLevel">BOM Level</label>
-        <input type="text" id="bomLevel" class="form-control" [(ngModel)]="material.bomLevel" name="bomLevel" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" id="description" class="form-control" [(ngModel)]="material.description" name="description" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="typeOfMaterial">Type of Material</label>
-        <input type="text" id="typeOfMaterial" class="form-control" [(ngModel)]="material.typeOfMaterial" name="typeOfMaterial" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="materialSubType">Material Sub Type</label>
-        <input type="text" id="materialSubType" class="form-control" [(ngModel)]="material.materialSubType" name="materialSubType" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="color">Color</label>
-        <input type="text" id="color" class="form-control" [(ngModel)]="material.color" name="color" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="typeId">Type ID</label>
-        <input type="text" id="typeId" class="form-control" [(ngModel)]="material.typeId" name="typeId" required>
-      </div>
-  
-      <button type="submit" class="btn btn-primary" [disabled]="!materialForm.form.valid">Add Material</button>
-    </form>
-  </div>
-  
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!materialForm.form.valid">Add Material</button>
+  </form>
+</div>
