@@ -23,7 +23,13 @@ export class AddPartComponent {
     locationIdentifier: ''
   };
 
-  constructor(private firebaseService: FirebaseService) {}
+  constructor(private firebaseService: FirebaseService) {
+    this.firebaseService.getPartForEdit().subscribe(part => {
+      if (part) {
+        this.part = { ...part };
+      }
+    });
+  }
 
   addPart() {
     this.firebaseService.addPart(this.part).subscribe(
@@ -33,6 +39,18 @@ export class AddPartComponent {
       },
       (error) => {
         console.error('Error adding part:', error);
+      }
+    );
+  }
+
+  editPartSubmit() {
+    this.firebaseService.updatePart(this.part).subscribe(
+      () => {
+        console.log('Part updated successfully');
+        this.resetForm();
+      },
+      (error) => {
+        console.error('Error updating part:', error);
       }
     );
   }

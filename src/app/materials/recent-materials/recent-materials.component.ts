@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class RecentMaterialsComponent implements OnInit, OnDestroy {
   materials: Material[] = [];
   private updateSubscription: Subscription | null = null;
-  isLoading = true; 
+  isLoading = true;
 
   constructor(private firebaseService: FirebaseService) {}
 
@@ -44,14 +44,11 @@ export class RecentMaterialsComponent implements OnInit, OnDestroy {
     );
   }
 
-  
-
   deleteMaterial(id: string) {
     if (confirm('Are you sure you want to delete this material?')) {
       this.firebaseService.deleteMaterial(id).subscribe();
     }
   }
- 
 
   ngOnDestroy() {
     if (this.updateSubscription) {

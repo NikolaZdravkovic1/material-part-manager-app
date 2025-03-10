@@ -1,8 +1,8 @@
 <div class="container mt-5">
-  <h2>Add a New Part</h2>
-  <form (ngSubmit)="addPart()" #partForm="ngForm">
+  <h2>{{ part.id ? 'Edit Part' : 'Add a New Part' }}</h2>
+  
+  <form (ngSubmit)="part.id ? editPartSubmit() : addPart()" #partForm="ngForm">
     
-   
     <div class="form-group">
       <label for="partNumber">Part Number</label>
       <input type="text" id="partNumber" [(ngModel)]="part.partNumber" name="partNumber" class="form-control" required maxlength="16" pattern="^[a-zA-Z0-9-]+$" title="Only letters, numbers, and dashes are allowed" />
@@ -118,6 +118,8 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">Add Part</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!partForm.form.valid">
+      {{ part.id ? 'Update Part' : 'Add Part' }}
+    </button>
   </form>
 </div>

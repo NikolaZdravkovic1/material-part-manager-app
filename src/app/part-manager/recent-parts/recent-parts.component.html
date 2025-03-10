@@ -5,7 +5,33 @@
     <span class="sr-only">Loading...</span>
   </div>
 
-  <table class="table table-striped" *ngIf="!isLoading && parts.length > 0">
+  <div class="form-group">
+    <label for="searchBy">Search by:</label>
+    <select id="searchBy" class="form-control" [(ngModel)]="selectedSearchCriteria">
+      <option value="partNumber">Part Number</option>
+      <option value="description">Description</option>
+      <option value="partColorCode">Part Color Code</option>
+      <option value="custumerPartNumber">Customer Part Number</option>
+      <option value="project">Project</option>
+      <option value="partGroup">Part Group</option>
+      <option value="partType">Part Type</option>
+      <option value="side">Side</option>
+      <option value="color">Color</option>
+      <option value="locationIdentifier">Location Identifier</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="searchTerm"
+      (input)="filterParts()"
+      placeholder="Search parts"
+    />
+  </div>
+
+  <table class="table table-striped" *ngIf="!isLoading && filteredParts.length > 0">
     <thead>
       <tr>
         <th>ID</th>
@@ -24,7 +50,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let part of parts">
+      <tr *ngFor="let part of filteredParts">
         <td>{{ part.id }}</td>
         <td>{{ part.partNumber }}</td>
         <td>{{ part.description }}</td>
@@ -38,15 +64,15 @@
         <td>{{ part.color }}</td>
         <td>{{ part.locationIdentifier }}</td>
         <td>
-          <button class="btn btn-danger btn-sm" (click)="deletePart(part.id)">
-            Delete
-          </button>
+          <button class="btn btn-danger btn-sm" (click)="deletePart(part.id)">Delete</button>
+          
+          <button class="btn btn-warning btn-sm" (click)="editPart(part)">Edit</button>
         </td>
       </tr>
     </tbody>
   </table>
 
-  <p *ngIf="!isLoading && parts.length === 0" class="text-muted text-center mt-3">
+  <p *ngIf="!isLoading && filteredParts.length === 0" class="text-muted text-center mt-3">
     No parts available.
   </p>
 </div>
