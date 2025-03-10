@@ -12,30 +12,11 @@ export class FirebaseService {
   private materialsUpdated = new BehaviorSubject<void>(null);
   private partsUpdated = new BehaviorSubject<void>(null);
   private partForEdit = new BehaviorSubject<Part | null>(null);
+  private materialForEdit = new BehaviorSubject<Material | null>(null);
 
   constructor(private http: HttpClient) {}
 
-  get materialsUpdated$(): Observable<void> {
-    return this.materialsUpdated.asObservable();
-  }
 
-  
-
-  addMaterial(material: Material) {
-    return this.http.post(`${this.baseUrl}/materials.json`, material).pipe(
-      tap(() => this.materialsUpdated.next()) 
-    );
-  }
-
-  getMaterials() {
-    return this.http.get<{ [key: string]: Material }>(`${this.baseUrl}/materials.json`);
-  }
-
-  deleteMaterial(id: string) {
-    return this.http.delete(`${this.baseUrl}/materials/${id}.json`).pipe(
-      tap(() => this.materialsUpdated.next()) 
-    );
-  }
   get partsUpdated$() {
     return this.partsUpdated.asObservable();
   }
@@ -68,6 +49,40 @@ export class FirebaseService {
     return this.http.delete<void>(`${this.baseUrl}parts/${id}.json`).pipe(
       tap(() => this.partsUpdated.next())
     );
+  }
+
+  get materialsUpdated$(): Observable<void> {
+    return this.materialsUpdated.asObservable();
+  }
+
+  addMaterial(material: Material) {
+    return this.http.post(`${this.baseUrl}/materials.json`, material).pipe(
+      tap(() => this.materialsUpdated.next()) 
+    );
+  }
+
+  getMaterials() {
+    return this.http.get<{ [key: string]: Material }>(`${this.baseUrl}/materials.json`);
+  }
+
+  deleteMaterial(id: string) {
+    return this.http.delete(`${this.baseUrl}/materials/${id}.json`).pipe(
+      tap(() => this.materialsUpdated.next()) 
+    );
+  }
+
+  updateMaterial(material: Material) {
+    return this.http.put(`${this.baseUrl}/materials/${material.id}.json`, material).pipe(
+      tap(() => this.materialsUpdated.next())
+    );
+  }
+
+  setMaterialForEdit(material: Material) {
+    this.materialForEdit.next(material);
+  }
+
+  getMaterialForEdit(): Observable<Material | null> {
+    return this.materialForEdit.asObservable();
   }
 
   

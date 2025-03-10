@@ -80,6 +80,9 @@
       </div>
     </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="!materialForm.form.valid">Add Material</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!materialForm.form.valid">
+      {{ isEditing ? 'Update Material' : 'Add Material' }}
+    </button>
+    
   </form>
 </div>

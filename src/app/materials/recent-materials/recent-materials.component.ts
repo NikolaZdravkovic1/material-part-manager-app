@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs';
 })
 export class RecentMaterialsComponent implements OnInit, OnDestroy {
   materials: Material[] = [];
+  filteredMaterials: Material[] = [];
+  selectedField: string = 'partNumber'; 
+  searchQuery: string = '';
   private updateSubscription: Subscription | null = null;
   isLoading = true;
 
@@ -16,7 +19,6 @@ export class RecentMaterialsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fetchMaterials();
-
     this.updateSubscription = this.firebaseService.materialsUpdated$.subscribe(() => {
       this.fetchMaterials();
     });
@@ -35,6 +37,7 @@ export class RecentMaterialsComponent implements OnInit, OnDestroy {
           }
         }
         this.materials = materialsArray.reverse();
+        this.applyFilters();
         this.isLoading = false;
       },
       error => {
@@ -44,9 +47,29 @@ export class RecentMaterialsComponent implements OnInit, OnDestroy {
     );
   }
 
+  applyFilters() {
+    if (!this.searchQuery.trim()) {
+      this.filteredMaterials = this.materials;
+      return;
+    }
+
+    const query = this.searchQuery.toLowerCase();
+    
+    this.filteredMaterials = this.materials.filter(material => {
+      const fieldValue = material[this.selectedField]?.toString().toLowerCase() || '';
+      return fieldValue.includes(query);
+    });
+  }
+
+  editMaterial(material: Material) {
+    this.firebaseService.setMaterialForEdit(material);
+  }
+
   deleteMaterial(id: string) {
     if (confirm('Are you sure you want to delete this material?')) {
-      this.firebaseService.deleteMaterial(id).subscribe();
+      this.firebaseService.deleteMaterial(id).subscribe(() => {
+        this.fetchMaterials();
+      });
     }
   }
 
