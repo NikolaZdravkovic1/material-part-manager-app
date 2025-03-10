@@ -14,12 +14,13 @@ import { AddMaterialComponent } from './materials/add-material/add-material.comp
 import { RecentMaterialsComponent } from './materials/recent-materials/recent-materials.component';
 import { AddPartComponent } from './part-manager/add-part/add-part.component';
 import { RecentPartsComponent } from './part-manager/recent-parts/recent-parts.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: MenuComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'materials', component: MaterialsComponent },
-  { path: 'part-manager', component: PartManagerComponent },
+  { path: 'materials', component: MaterialsComponent, canActivate:[AuthGuard] },
+  { path: 'part-manager', component: PartManagerComponent, canActivate:[AuthGuard] },
 ];
 
 @NgModule({
